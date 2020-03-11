@@ -6,7 +6,7 @@
 <body>
 <form id="form1" runat="server">
 	<div>
-		<span>Enter an email below:<br /></span>
+		<span>Enter an email or list of emails seperated by commas below:<br /></span>
 		<asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>&nbsp;&nbsp;<asp:Button ID="btnCheckEmail" OnClick="btnCheckEmail_Click" runat="server" Text="Check Email" /><br />
 		<asp:Label runat="server" ID="lblUniqueCount"></asp:Label>
 	</div>
