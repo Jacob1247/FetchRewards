@@ -23,10 +23,17 @@ public partial class email_check : System.Web.UI.Page
 	}
 	protected void btnCheckEmail_Click(object sender EventArgs e)
 	{
-		string[] newEmails = this.txtEmail.Text.Split(",");
-		foreach (string email in newEmails)
+		if (this.txtEmail.Text.Contains(",")
 		{
-			checkEmail(email);
+			string[] newEmails = this.txtEmail.Text.Split(",");
+			foreach (string email in newEmails)
+			{
+				checkEmail(email);
+			}
+		}
+		else
+		{
+			checkEmail(this.txtEmail.Text);
 		}
 	}
 	private void checkEmail(string email)
