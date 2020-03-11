@@ -21,28 +21,37 @@ public partial class email_check : System.Web.UI.Page
 		//load characters to ignore after
 		igList.Add("+");
 	}
-	private void btnCheckEmail_Click(string email)
+	protected void btnCheckEmail_Click(object sender EventArgs e)
 	{
-        foreach (string str in remList)
-        {
-            email.Replace(str, "");
-        }
-        foreach (string str in igList)
-        {
-            email = email.Remove(email.IndexOf(str));
-        }
-        bool unique = true;
-        foreach (string str in emailList)
-        {
-            if (str == email)
-            {
-                unique = false;
-            }
-        }
-        if (unique)
-        {
-            emailList.Add(email);
-        }
-		this.lblUniqueCount = emailList.Count;
+		string[] newEmails = this.txtEmail.Text.Split(",");
+		foreach (string email in newEmails)
+		{
+			checkEmail(email);
+		}
+	}
+	private void checkEmail(string email)
+	{
+		foreach (string str in remList)
+		{
+			email.Replace(str, "");
+		}
+		foreach (string str in igList)
+		{
+			email = email.Remove(email.IndexOf(str));
+		}
+		bool unique = true;
+		foreach (string str in emailList)
+		{
+			if (str == email)
+			{
+				unique = false;
+			}
+		}
+		if (unique)
+		{
+			emailList.Add(email);
+		}
+			this.lblUniqueCount = emailList.Count;
+		}
 	}
 }
