@@ -23,6 +23,7 @@ public partial class email_check : System.Web.UI.Page
 	}
 	protected void btnCheckEmail_Click(object sender EventArgs e)
 	{
+		//checking if there is a list, if so it splits based on the comma. otherwise just checks the entire string
 		if (this.txtEmail.Text.Contains(",")
 		{
 			string[] newEmails = this.txtEmail.Text.Split(",");
@@ -38,15 +39,18 @@ public partial class email_check : System.Web.UI.Page
 	}
 	private void checkEmail(string email)
 	{
+		//remove each character in the list
 		foreach (string str in remList)
 		{
 			email.Replace(str, "");
 		}
+		//remove any text after one of the ignore characters
 		foreach (string str in igList)
 		{
 			email = email.Remove(email.IndexOf(str));
 		}
 		bool unique = true;
+		//checking if the current list of emails contains the new email
 		foreach (string str in emailList)
 		{
 			if (str == email)
@@ -54,11 +58,12 @@ public partial class email_check : System.Web.UI.Page
 				unique = false;
 			}
 		}
+		//if the email isn't in the list, add it to the list
 		if (unique)
 		{
 			emailList.Add(email);
 		}
-			this.lblUniqueCount = emailList.Count;
-		}
+		//display the current count of unique emails
+		this.lblUniqueCount = emailList.Count;
 	}
 }
